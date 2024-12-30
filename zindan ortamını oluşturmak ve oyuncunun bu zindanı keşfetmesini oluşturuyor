@@ -1,0 +1,29 @@
+public:
+    Dungeon(int size) : size(size), map(size, vector<char>(size, '.')), collectedTreasures(0) {
+        player = new Player(0, 0);
+        map[player->getX()][player->getY()] = 'P';
+    }
+
+    ~Dungeon() {
+        delete player;
+    }
+
+    void generate() {
+        srand(static_cast<unsigned>(time(0)));
+
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                if (i == 0 && j == 0) continue;
+                int randValue = rand() % 10;
+
+                if (randValue < 2) {
+                    enemies.emplace_back(i, j);
+                    map[i][j] = 'E';
+                }
+                else if (randValue < 4 && treasures.size() < 3) {
+                    treasures.emplace_back(i, j);
+                    map[i][j] = 'T';
+                }
+            }
+        }
+    }
