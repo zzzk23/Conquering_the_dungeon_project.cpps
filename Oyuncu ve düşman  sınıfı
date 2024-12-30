@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <locale>
+#include <windows.h>
+
+using namespace std;
+
+class Character {
+protected:
+    int x, y;
+
+public:
+    Character(int startX, int startY) : x(startX), y(startY) {}
+    virtual ~Character() {}
+
+    virtual void interact() const = 0;
+
+    int getX() const { return x; }
+    int getY() const { return y; }
+};
