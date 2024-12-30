@@ -1,0 +1,51 @@
+bool movePlayer(char direction) {
+        int newX = player->getX();
+        int newY = player->getY();
+
+        if (direction == 'W' || direction == 'w') newX--;
+        else if (direction == 'S' || direction == 's') newX++;
+        else if (direction == 'A' || direction == 'a') newY--;
+        else if (direction == 'D' || direction == 'd') newY++;
+        else {
+            cout << "Gecersiz yon! Hareket etmek icin W/A/S/D kullanin." << endl;
+            return false;
+        }
+
+        if (newX < 0 || newX >= size || newY < 0 || newY >= size) {
+            cout << "Oraya tasinamazsin! Zindanin disinda." << endl;
+            return false;
+        }
+
+        if (map[newX][newY] == 'E') {
+            cout << "Bir dusmanla karsilastin! Oyunu kaybettin!" << endl;
+            char choice;
+            cout << "Yeniden baslamak ister misiniz? (E/H): ";
+            cin >> choice;
+            if (choice == 'E' || choice == 'e') {
+                reset();
+            }
+            else {
+                cout << "Oynadiginiz icin tesekkurler! Gule gule!" << endl;
+                exit(0);
+            }
+        }
+        else if (map[newX][newY] == 'T') {
+            cout << "Bir hazine buldun! Envanterine eklendi." << endl;
+            collectedTreasures++;
+            if (collectedTreasures == treasures.size()) {
+                cout << "Tebrikler! Tum hazineleri topladiniz!" << endl;
+                cout << "Son harita:" << endl;
+                printFinalMap();
+                exit(0);
+            }
+        }
+        else {
+            cout << "Bos bir yere tasindin." << endl;
+        }
+
+        map[player->getX()][player->getY()] = '.';
+        map[newX][newY] = 'P';
+        player = new Player(newX, newY);
+
+        return true;
+    }
