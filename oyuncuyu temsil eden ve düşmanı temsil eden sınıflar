@@ -1,0 +1,17 @@
+class Player : public Character {
+public:
+    Player(int startX, int startY) : Character(startX, startY) {}
+
+    void interact() const override {
+        cout << "Oyuncu bir sey yapti!" << endl;
+    }
+};
+
+class Enemy : public Character {
+public:
+    Enemy(int startX, int startY) : Character(startX, startY) {}
+
+    void interact() const override {
+        cout << "Bir dusmanla karsilastin! Savasa hazirlan!" << endl;
+    }
+};
