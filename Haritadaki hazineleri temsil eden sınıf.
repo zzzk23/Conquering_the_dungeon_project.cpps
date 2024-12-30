@@ -1,0 +1,10 @@
+class Treasure {
+private:
+    int x, y;
+
+public:
+    Treasure(int startX, int startY) : x(startX), y(startY) {}
+
+    int getX() const { return x; }
+    int getY() const { return y; }
+}; 
