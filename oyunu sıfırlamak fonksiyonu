@@ -1,0 +1,11 @@
+void reset() {
+        delete player;
+        player = new Player(0, 0);
+        map = vector<vector<char>>(size, vector<char>(size, '.'));
+        enemies.clear();
+        treasures.clear();
+        collectedTreasures = 0;
+        map[player->getX()][player->getY()] = 'P';
+        generate();
+    }
+};
