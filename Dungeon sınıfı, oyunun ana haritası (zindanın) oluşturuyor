@@ -1,0 +1,8 @@
+class Dungeon {
+private:
+    vector<vector<char>> map;
+    int size;
+    Player* player;
+    vector<Enemy> enemies;
+    vector<Treasure> treasures;
+    int collectedTreasures;
