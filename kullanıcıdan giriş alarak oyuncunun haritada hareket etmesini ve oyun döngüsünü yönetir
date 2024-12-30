@@ -1,0 +1,26 @@
+int main() {
+    setlocale(LC_ALL, "Turkish");
+    SetConsoleOutputCP(65001);
+
+    cout << "Dungeon oyununa hos geldiniz!" << endl;
+    Dungeon dungeon(5);
+    dungeon.generate();
+
+    while (true) {
+        cout << "Dungeon haritasi:" << endl;
+        dungeon.print();
+
+        cout << "Hareketinizi girin (Hareket etmek icin W/A/S/D , cikmak icin Q): ";
+        char move;
+        cin >> move;
+
+        if (move == 'Q' || move == 'q') {
+            cout << "Oynadiginiz icin tesekkurler! Gule gule!" << endl;
+            break;
+        }
+
+        dungeon.movePlayer(move);
+    }
+
+    return 0;
+}
